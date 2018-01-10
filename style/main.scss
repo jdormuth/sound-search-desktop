@@ -1,0 +1,338 @@
+#body {
+	background-color: #000000;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+#cover {
+	display:none;
+	position: absolute;
+	top:0px;
+	left: 0px;
+	width:100%;
+	height:100%;
+	background-color:rgba(15, 15, 15, 0.8);
+}
+
+#cover.show {
+	display:block;
+}
+
+#drums {
+	display:block;
+	overflow: hidden;
+}
+#file{
+	display:none;
+	position:absolute;
+	margin: auto;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 50%;
+	// width: 100px;
+	// height: 100px;
+	
+	//border-radius: 3px;
+}
+
+#fileDescription{
+	color:white;
+}
+
+#fileLibrary{
+	display:none;
+	position:absolute;
+	margin: auto;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	
+}
+
+#libraryDescription{
+	
+}
+
+/* fallbacks */
+
+#reorient {
+	display:none;
+	position: absolute;
+	top:0px;
+	left: 0px;
+	width:100%;
+	height:100%;
+	background-color:#000;
+}
+
+#reorient.show {
+	display:block;
+}
+#reorient > .container {
+	position: absolute;
+	top:50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+
+	text-align: center;
+	font-family: 'Roboto Mono', sans-serif;
+	font-size:16px;
+	color:#FFF;
+}
+
+#reorient > .container > .rotatePhone {
+	width: 180px;
+	height: 140px;
+	position:relative;
+	left: 50%;
+	transform: translateX(-50%);
+	padding-bottom:40px;
+	background-image: url("/img/rotatePhone.svg");
+	background-repeat: no-repeat;
+}
+
+#noGL {
+	display:none;
+	position: absolute;
+	top:0px;
+	left: 0px;
+	width:100%;
+	height:100%;
+	background-color:#000;
+}
+#noGL.show {
+	display:block;
+}
+
+#noGL > .container {
+	position: absolute;
+	top:50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+
+	text-align: center;
+	font-family: 'Roboto Mono', sans-serif;
+	font-size:16px;
+	color:#FFF;
+}
+
+
+#noGL > .title > a {
+	color:#1cbf8a;
+}
+
+
+//about
+$lightColor: #c2bfd9;
+$lightMediumColor: #3f3d52;
+$mediumColor: #2d2b3f;
+$mediumDarkColor: #262536;
+$darkColor: #1c1b28;
+
+#about {
+	display:none;
+	position: absolute;
+	top:0px;
+	left: 0px;
+	width:100%;
+	height:100%;
+	background-color:rgba(15, 15, 15, 0.8);
+	overflow: auto;
+}
+#about > .container > h1 {
+	color:#CCC;
+	font-family: 'Roboto Mono', sans-serif;
+	font-size:20px;
+	font-weight: 300;
+	letter-spacing: 2px;
+	position: relative;
+	min-width: 300px;
+	max-width: 580px;
+
+	padding: 10px;
+	margin-top:60px;
+	margin-bottom: 0px;
+
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+* ::-webkit-scrollbar {
+	width:  10px;
+	height: 10px;
+}
+
+* ::-webkit-scrollbar-thumb {
+	background: $lightMediumColor;
+}
+
+* ::-webkit-scrollbar-track {
+	background: $mediumDarkColor;
+}
+
+#about > .container > p {
+	padding: 0px 10px 30px 10px;
+	font-family: 'Roboto Mono', sans-serif;
+	color:#CCC;
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 180%;
+	margin: 0 auto;
+	max-width: 600px;
+}
+
+#about > .container {
+	position: relative;
+	top:0px;
+	left: 50%;
+	transform: translateX(-50%);
+	min-width: 300px;
+	max-width: 600px;
+}
+
+#about > .container > p > a {
+	color:#1babff;
+	text-decoration: none; 
+}
+
+#about > .clearButton {
+	position: absolute;
+	top:35px;
+	width: 20px; 
+	height: 20px; 
+	right:35px;
+	cursor: pointer;
+	background: url(/img/clear_about.svg) no-repeat scroll 0px 0px;
+}
+
+#about.show {
+	display:block;
+}
+
+#about > .container > .videoContainer {
+	overflow: hidden;
+	position: relative;
+	width: calc(100% - 20px);
+	padding-bottom: 56.25%;
+	float: left;
+	height: 0;
+	margin: 10px;
+	background-color:#060;
+	margin-top:20px;
+	margin-bottom:30px;
+}
+
+#about > .container > .videoContainer > .playButton{
+	width: 90px;
+	height: 90px;
+	position: absolute;
+	left:50%;
+	top:50%;
+	transform: translateX(-50%) translateY(-50%);
+	z-index:2;
+	cursor:pointer;
+}
+
+#about > .container > .videoContainer > .thumbnail{
+	width: 100%;
+	height: 133%;
+	position: absolute;
+	left:50%;
+	top:50%;
+	transform: translateX(-50%) translateY(-50%);
+	z-index:1;
+}
+
+#about > .container > .videoContainer > .drumsVideo{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+
+//intro
+
+#introBlock > .startLink {
+	visibility:hidden;
+	display: inline-block;
+	cursor: default;
+	line-height: 22px;
+	white-space: nowrap;
+	background-color:rgba(15, 15, 15, 0.75);
+	cursor: pointer;
+	font-family: 'Roboto Mono', sans-serif;
+	font-weight: 400;
+	font-size:14px;
+	letter-spacing: 1px;
+
+	padding: 10px 20px 10px 20px;
+	color: #29c4c5;
+	border: 1px solid #29c4c5;
+}
+
+#introBlock > .startLink.show {
+	visibility:visible;
+}
+
+
+#introBlock > .aboutLink {
+	visibility:hidden;
+	color:#29c4c5;
+	display: inline-block;
+	font-weight:400;
+	letter-spacing: 2px;
+	font-size:12px;
+	padding-top:20px;
+	padding-bottom:3px;
+	border-bottom: 1px solid #29c4c5;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#introBlock > .aboutLink.show {
+	visibility:visible;
+}
+
+#introBlock > .header {
+	padding: 0px 110px;
+}
+#introBlock > p {
+	padding: 30px 100px;
+}
+
+#intro {
+	display:block;
+}
+#intro.hide {
+	display:none;
+}
+
+#introBlock {
+	position: absolute;
+	top:50%;
+	left: 50%;
+	color:#e8e6f2;
+	font-family: 'Roboto Mono', sans-serif;
+	transform: translateX(-50%) translateY(-50%);
+	text-align: center;
+	width: 450px;
+}
+
+#introBlock > .header {
+	font-family: 'Roboto Mono', sans-serif;
+	font-weight: 300;
+	letter-spacing: 1px;
+	font-size:22px;
+	padding: 0px;
+}
+#introBlock > p {
+	font-family: 'Roboto Mono', sans-serif;
+	font-weight: 300;
+	letter-spacing: 0px;
+	line-height: 180%;
+	font-size:14px;
+	margin: 0;
+	padding: 30px 50px;
+}
