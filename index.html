@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sound Search</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Mono:100,300,400' rel='stylesheet' type='text/css'>
+	<link type="text/css" href="./style/preload.css" rel="stylesheet"/>
+    <script type="text/javascript" src="https://www.youtube.com/player_api"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
+    <script src="https://cdn.jsdelivr.net/gh/jquery-form/form@4.2.2/dist/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
+    <script>var ipc = require('electron').ipcRenderer;</script>
+</head>
+
+<body>
+    <div id="cover"></div>
+    <div id = "background">
+    <div id="about" class="about" >
+    
+            <div class="clearButton"></div>
+            <div class="container" class="description">
+                <h1>Sound Search</h1>
+                    <p class="description">
+                        Built by Jacob Dormuth. 
+                    </p>
+            </div>
+    </div>
+    <div id="intro">
+		<div id="introBlock">
+			<div class="header">Sound Search</div>
+			<p>Search for sounds at the speed of thought.</p>
+            <div id="startLink" class="startLink"><span>START SEARCHING</span></div><br>
+            <script>
+            var startLink = document.getElementById("startLink");
+                    startLink.addEventListener('click', function(){
+                        
+                        ipc.once('startReply', function(event, response){
+                            //when start clicked remove header and display file upload
+                            var intro = document.getElementById("intro");
+                            
+                            intro.style.display = "none";
+                            var fileUpload = document.getElementById("file");
+                            fileUpload.style.display = "block";
+                            
+                            
+                        })
+                        ipc.send('startAction',intro);
+                    });
+            </script>
+			<a href="#" id="aboutLink" class="aboutLink">ABOUT</a>
+		</div>
+    </div>
+    <div id="noGL">
+            <div class="container">Oops, sorry for the tech trouble. For the best experience, view in <a href="https://www.google.com/chrome" target="_blank">Chrome browser</a>.</div>
+        </div>
+        
+        <!--add functionality for uploading sound file-->
+        <div id="file">
+            <form id = "frmUploader" action="api/Upload/" method="post" enctype="multipart/form-data">
+                <p id="fileDescription">Upload a track to find your matches!</p>
+                <button type="button" id="trackButton" onclick="uploadTrack()">Upload!</button>
+                <script>
+                    const {dialog} = require('electron').remote;
+                    var userFile;
+                    function uploadTrack(){
+
+                        dialog.showOpenDialog({properties: ['openFile']}, function (fileName) {
+                            fileName+="";
+                            userFile = fileName;
+                            console.log(typeof(fileName+=""));
+
+                            console.log(fileName);
+                    }); 
+
+                    }
+                </script>
+            </form>
+        </br>
+            <p id="fileDescription">Upload your sound library!</p>
+
+            <form id = "libraryUploader" action="api/UploadLibrary/" method="post" enctype="multipart/form-data">
+                <button type="button" id="libraryButton" onclick="uploadLibrary()">Upload!</button>
+                <script>
+
+                    function uploadLibrary(){
+                        var fileNames;
+                        dialog.showOpenDialog({properties: ['openFile', 'openDirectory', 'multiSelections']}, function (fileNames) {
+                            console.log(typeof(fileNames+=""));
+                            const fs = require('fs');
+                            console.log(fileNames);
+                            var args = [fileNames,userFile];
+                            ipc.send('tsne',args);
+                            var buttons = document.getElementById("buttons");
+                            buttons.style.display = "inline";
+                            document.getElementById("Track").innerHTML = '<audio id="audio-player-upload" controls="controls" src="'+userFile+'"type="audio/mpeg">';
+                            
+                    }); 
+                        
+
+                    }
+                    </script>
+                
+            </form>
+            </br>
+            <p id="fileDescription">Search!</p>
+        
+        </div>
+        <div id= "Track"></div>
+        <div>
+            <ul id="buttons">
+                <li id = "firstButton"></li>
+                <li id = "secondButton"></li>
+                <li id = "thirdButton"></li>
+                <li id = "fourthButton"></li>
+                <li id = "fifthButton"></li>
+                <li id = "sixthButton"></li>
+                <li id = "seventhButton"></li>
+                <li id = "eigthButton"></li>
+                <li id = "ninthButton"></li>
+                <li id = "tenthButton"></li>
+              </ul>
+              <script>
+                ipc.on("tsneFinished", function(event,response){
+                    console.log("tsne");
+                    var trackList = response;
+                    // console.log("in audio part");
+                    var testString = trackList[0];
+                    console.log(testString);
+                    document.getElementById('firstButton').innerHTML = '<p>FileName: "'+trackList[0]+'"</p>'+'<audio id="audio-player-1" controls="controls" src="'+trackList[0]+'"type="audio/mpeg">';
+                    document.getElementById('secondButton').innerHTML = '<p>FileName: "'+trackList[1]+'"</p>'+'<audio id="audio-player-2" controls="controls" src="'+trackList[1]+'"type="audio/mpeg">'; 
+                    document.getElementById('thirdButton').innerHTML = '<p>FileName: "'+trackList[2]+'"</p>'+'<audio id="audio-player-3" controls="controls" src="'+trackList[2]+'"type="audio/mpeg">'; 
+                    document.getElementById('fourthButton').innerHTML = '<p>FileName: "'+trackList[3]+'"</p>'+'<audio id="audio-player-4" controls="controls" src="'+trackList[3]+'"type="audio/mpeg">'; 
+                    document.getElementById('fifthButton').innerHTML = '<p>FileName: "'+trackList[4]+'"</p>'+'<audio id="audio-player-4" controls="controls" src="'+trackList[3]+'"type="audio/mpeg">';
+                    document.getElementById('sixthButton').innerHTML = '<p>FileName: "'+trackList[5]+'"</p>'+'<audio id="audio-player-4" controls="controls" src="'+trackList[3]+'"type="audio/mpeg">';
+                    document.getElementById('seventhButton').innerHTML = '<p>FileName: "'+trackList[6]+'"</p>'+'<audio id="audio-player-4" controls="controls" src="'+trackList[3]+'"type="audio/mpeg">';
+                    document.getElementById('eigthButton').innerHTML = '<p>FileName: "'+trackList[7]+'"</p>'+'<audio id="audio-player-4" controls="controls" src="'+trackList[3]+'"type="audio/mpeg">';
+                    document.getElementById('ninthButton').innerHTML = '<p>FileName: "'+trackList[8]+'"</p>'+'<audio id="audio-player-4" controls="controls" src="'+trackList[3]+'"type="audio/mpeg">';
+                    document.getElementById('tenthButton').innerHTML = '<p>FileName: "'+trackList[9]+'"</p>'+'<audio id="audio-player-4" controls="controls" src="'+trackList[3]+'"type="audio/mpeg">';
+
+                });
+            
+              </script>
+        </div>
+    <script>require('./renderer.js')</script>
+    <script>
+
+       
+    
+    </script>
+</div>
+</body>
+
+
+</html>
