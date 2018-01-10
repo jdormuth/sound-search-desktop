@@ -5,10 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Mono:100,300,400' rel='stylesheet' type='text/css'>
 	<link type="text/css" href="./style/preload.css" rel="stylesheet"/>
-    <script type="text/javascript" src="https://www.youtube.com/player_api"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
-    <script src="https://cdn.jsdelivr.net/gh/jquery-form/form@4.2.2/dist/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
+    
     <script>var ipc = require('electron').ipcRenderer;</script>
 </head>
 
@@ -41,8 +38,6 @@
                             intro.style.display = "none";
                             var fileUpload = document.getElementById("file");
                             fileUpload.style.display = "block";
-                            
-                            
                         })
                         ipc.send('startAction',intro);
                     });
@@ -67,9 +62,6 @@
                         dialog.showOpenDialog({properties: ['openFile']}, function (fileName) {
                             fileName+="";
                             userFile = fileName;
-                            console.log(typeof(fileName+=""));
-
-                            console.log(fileName);
                     }); 
 
                     }
@@ -85,10 +77,9 @@
                     function uploadLibrary(){
                         var fileNames;
                         dialog.showOpenDialog({properties: ['openFile', 'openDirectory', 'multiSelections']}, function (fileNames) {
-                            console.log(typeof(fileNames+=""));
                             const fs = require('fs');
-                            console.log(fileNames);
-                            var args = [fileNames,userFile];
+                           var args = [fileNames,userFile];
+                            //send job to process tsne of newly acquired amples
                             ipc.send('tsne',args);
                             var buttons = document.getElementById("buttons");
                             buttons.style.display = "inline";
