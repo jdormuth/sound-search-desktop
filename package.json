@@ -1,0 +1,52 @@
+{
+  "name": "sound-search-desktop",
+  "version": "1.0.0",
+  "description": "Search for beats and sounds",
+  "main": "./app/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/jdormuth/sound-search-desktop",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "dependencies": {
+    "autoprefixer-loader": "^3.2.0",
+    "body-parser": "^1.15.2",
+    "chalk": "^2.0.1",
+    "domready": "^1.0.8",
+    "express": "^4.14.0",
+    "express-fileupload": "^0.3.0",
+    "file-loader": "^0.9.0",
+    "formidable": "^1.0.17",
+    "fs": "0.0.1-security",
+    "jshint": "^2.9.1",
+    "jshint-loader": "^0.8.3",
+    "json-loader": "^0.5.4",
+    "multer": "^1.2.0",
+    "net": "^1.0.2",
+    "node-sass": "^3.4.2",
+    "requirejs": "^2.3.5",
+    "sass-loader": "^3.2.0",
+    "style-loader": "^0.13.0",
+    "youtube-iframe": "^1.0.3"
+  },
+  "devDependencies": {
+    "css-loader": "^0.23.1",
+    "electron": "~1.7.8",
+    "exports-loader": "^0.6.3",
+    "imports-loader": "^0.6.5",
+    "perlin-simplex": "0.0.2",
+    "rtree": "^1.4.2",
+    "stats.js": "^0.16.0",
+    "three": "^0.75.0",
+    "tone": "^0.7.1",
+    "tween.js": "^16.3.4"
+  }
+}
